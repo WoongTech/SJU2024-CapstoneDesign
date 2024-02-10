@@ -4,7 +4,7 @@ from collections import namedtuple
 import tiktoken
 from langchain import OpenAI
 
-LLM_NAME = "text-davinci-003"
+LLM_NAME = "gpt-3.5-turbo"
 # Encoding for text-davinci-003
 ENCODING_NAME = "p50k_base"
 ENCODING = tiktoken.get_encoding(ENCODING_NAME)
