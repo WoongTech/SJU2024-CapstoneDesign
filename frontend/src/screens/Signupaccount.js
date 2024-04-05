@@ -1,9 +1,10 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useContext } from 'react';
 import styled from 'styled-components/native';
 import { Button, Input, ErrorMessage, Customtext } from '../components';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Alert } from 'react-native';
 import { validateEmail, removeWhitespace } from '../utils';
+import { UserContext } from '../contexts';
 
 const Container = styled.View`
   flex: 1;
@@ -28,6 +29,14 @@ const Signupaccount = ({ navigation }) => {
   const refPassword = useRef(null);
   const refPasswordConfirm = useRef(null);
   const refDidmount = useRef(null);
+
+  const { user, setUser: updateUserInfo } = useContext(UserContext);
+
+  const toggleUserState = (condition, value) => {
+    updateUserInfo({
+      [condition]: [value],
+    });
+  };
 
   useEffect(() => {
     setDisabled(
@@ -58,6 +67,9 @@ const Signupaccount = ({ navigation }) => {
   }, [email, name, password, passwordConfirm]);
 
   const _handleSignupBtnPress = () => {
+    toggleUserState('name', name);
+    toggleUserState('email', email);
+    toggleUserState('password', password);
     navigation.navigate('Signupbirthandgender');
   };
 

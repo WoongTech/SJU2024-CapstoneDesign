@@ -37,6 +37,9 @@ export const theme = {
 
   // Customcard
   cardBackground: Colors.grey_2,
-  cardimgBackGround: Colors.white,
+  cardfocusedBackGround: Colors.grey_3,
   cardTitle: Colors.black,
+
+  //list
+  listcolor: Colors.main,
 };

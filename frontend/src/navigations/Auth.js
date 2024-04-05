@@ -1,7 +1,14 @@
 import React, { useContext } from 'react';
 import { ThemeContext } from 'styled-components/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { Signin, Signupaccount, Signupbirthandgender } from '../screens';
+import {
+  Signin,
+  Signupaccount,
+  Signupbirthandgender,
+  Signupphysicalinformation,
+  Signupphysicalcharacteristics,
+  Signupdiseases,
+} from '../screens';
 import { MaterialIcons } from '@expo/vector-icons';
 
 const Stack = createStackNavigator();
@@ -14,7 +21,7 @@ const Auth = () => {
         cardStyle: { backgroundColor: theme.background },
       }}
     >
-      <Stack.Screen
+      {/* <Stack.Screen
         name="Signin"
         component={Signin}
         options={{
@@ -58,6 +65,72 @@ const Auth = () => {
           headerTitleAlign: 'center',
           headerTitleStyle: {
             fontWeight: 'bold',
+            fontSize: 28,
+          },
+          headerBackTitleVisible: false,
+          headerTintColor: theme.text,
+          headerLeft: ({ onPress, tintColor }) => (
+            <MaterialIcons
+              name="keyboard-arrow-left"
+              size={38}
+              color={tintColor}
+              onPress={onPress}
+            ></MaterialIcons>
+          ),
+        }}
+      ></Stack.Screen>
+      <Stack.Screen
+        name="Signupphysicalinformation"
+        component={Signupphysicalinformation}
+        options={{
+          title: '회원가입',
+          headerTitleAlign: 'center',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+            fontSize: 28,
+          },
+          headerBackTitleVisible: false,
+          headerTintColor: theme.text,
+          headerLeft: ({ onPress, tintColor }) => (
+            <MaterialIcons
+              name="keyboard-arrow-left"
+              size={38}
+              color={tintColor}
+              onPress={onPress}
+            ></MaterialIcons>
+          ),
+        }}
+      ></Stack.Screen> */}
+      <Stack.Screen
+        name="Signupphysicalcharacteristics"
+        component={Signupphysicalcharacteristics}
+        options={{
+          title: '회원가입',
+          headerTitleAlign: 'center',
+          headerTitleStyle: {
+            fontWeight: 'bold ',
+            fontSize: 28,
+          },
+          headerBackTitleVisible: false,
+          headerTintColor: theme.text,
+          headerLeft: ({ onPress, tintColor }) => (
+            <MaterialIcons
+              name="keyboard-arrow-left"
+              size={38}
+              color={tintColor}
+              onPress={onPress}
+            ></MaterialIcons>
+          ),
+        }}
+      ></Stack.Screen>
+      <Stack.Screen
+        name="Signupdiseases"
+        component={Signupdiseases}
+        options={{
+          title: '회원가입',
+          headerTitleAlign: 'center',
+          headerTitleStyle: {
+            fontWeight: 'bold ',
             fontSize: 28,
           },
           headerBackTitleVisible: false,

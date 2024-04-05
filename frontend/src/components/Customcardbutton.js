@@ -4,12 +4,13 @@ import PropTypes from 'prop-types';
 import { TouchableOpacity } from 'react-native';
 
 const Container = styled.View`
-  background-color: ${({ theme }) => theme.cardBackground};
+  background-color: ${({ theme, isFocused }) =>
+    isFocused ? theme.cardfocusedBackGround : theme.cardBackground};
   justify-content: center;
   align-items: center;
+  margin: 10px 10px;
 `;
 const Image = styled.Image`
-  background-color: ${({ theme }) => theme.cardBackground};
   width: 100px;
   height: 100px;
 `;
@@ -18,21 +19,22 @@ const Text = styled.Text`
   color: ${({ theme }) => theme.cardTitle};
 `;
 
-const Customcardbutton = ({ onPress, url, title }) => {
+const CustomCardButton = ({ onPress, url, title, isFocused }) => {
   return (
     <TouchableOpacity onPress={onPress}>
-      <Container>
-        <Image source={url}></Image>
+      <Container isFocused={isFocused}>
+        <Image source={url} />
         <Text>{title}</Text>
       </Container>
     </TouchableOpacity>
   );
 };
 
-Customcardbutton.protoType = {
-  url: PropTypes.string,
+CustomCardButton.propTypes = {
+  url: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   title: PropTypes.string.isRequired,
   onPress: PropTypes.func.isRequired,
+  isFocused: PropTypes.bool.isRequired,
 };
 
-export default Customcardbutton;
+export default CustomCardButton;

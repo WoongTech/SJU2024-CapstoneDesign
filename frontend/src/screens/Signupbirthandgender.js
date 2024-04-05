@@ -1,18 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components/native';
 import {
   Button,
   Input,
   ErrorMessage,
   Customtext,
-  Customcardbutton,
+  Genderradiobuttoncontiner,
 } from '../components';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { Alert } from 'react-native';
-import { validateEmail, removeWhitespace } from '../utils';
-import BoyImage from '../../assets/components/boyImage.png';
-import GirlImage from '../../assets/components/girlImage.png';
-import { Image, StyleSheet } from 'react-native';
+import { removeWhitespace } from '../utils';
+import { UserContext } from '../contexts';
 
 const Container = styled.View`
   flex: 1;
@@ -21,29 +18,6 @@ const Container = styled.View`
   background-color: ${({ theme }) => theme.background};
   padding: 10px 20px;
 `;
-
-const Cardcontainer = styled.View`
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  background-color: ${({ theme }) => theme.background};
-  padding: 20px 10px;
-`;
-
-const styles = StyleSheet.create({
-  container: {
-    paddingTop: 50,
-  },
-  tinyLogo: {
-    width: 50,
-    height: 50,
-  },
-  logo: {
-    width: 66,
-    height: 58,
-  },
-});
-
 const GUIDE_TEXT = `생일과 성별을 입력해주세요`;
 
 const Signupbirthandgender = ({ navigation }) => {
@@ -51,6 +25,14 @@ const Signupbirthandgender = ({ navigation }) => {
   const [gender, setGender] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [disabled, setDisabled] = useState(true);
+
+  const { user, setUser: updateUserInfo } = useContext(UserContext);
+
+  const toggleUserState = (condition, value) => {
+    updateUserInfo({
+      [condition]: [value],
+    });
+  };
 
   useEffect(() => {
     setDisabled(!(birth && gender && !errorMessage));
@@ -70,7 +52,9 @@ const Signupbirthandgender = ({ navigation }) => {
   }, [birth, gender]);
 
   const _handleSignupBtnPress = () => {
-    console.log('Sign up logic');
+    toggleUserState('birth', birth);
+    toggleUserState('gender', gender);
+    navigation.navigate('Signupphysicalinformation');
   };
 
   return (
@@ -86,18 +70,10 @@ const Signupbirthandgender = ({ navigation }) => {
           onBlur={() => setBirth(removeWhitespace(birth))}
           maxLength={8}
         ></Input>
-        <Cardcontainer>
-          <Customcardbutton
-            onPress={() => setGender('man')}
-            url={BoyImage}
-            title="남자"
-          ></Customcardbutton>
-          <Customcardbutton
-            onPress={() => setGender('woman')}
-            url={GirlImage}
-            title="여자"
-          ></Customcardbutton>
-        </Cardcontainer>
+        <Genderradiobuttoncontiner
+          gender={gender}
+          setGender={setGender}
+        ></Genderradiobuttoncontiner>
         <ErrorMessage message={errorMessage}></ErrorMessage>
         <Button
           title="다음"
