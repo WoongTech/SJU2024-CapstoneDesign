@@ -14,10 +14,10 @@ import java.math.BigDecimal;
 public class ResponseAnalysisDto {
     private String food;
     private String ingredients;
-    private BigDecimal amount;
+    private Integer amount;
 
     @Builder
-    public ResponseAnalysisDto(String food, String ingredients, BigDecimal amount){
+    public ResponseAnalysisDto(String food, String ingredients, Integer amount){
         this.food = food;
         this.ingredients = ingredients;
         this.amount = amount;

@@ -16,19 +16,19 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class RequestAnalysisDto {
     private MultipartFile foodImage;
-    private DietType type;
+    private DietType dietType;
     private KoreanOrAll koreanOrAll;
     private LocalDateTime intakeTime;
-    private String memberEmail; // 이메일을 이용해 select 해서 Member entity와 연결시킬 것임.
+    private String email; // 이메일을 이용해 select 해서 Member entity와 연결시킬 것임.
 
     @Builder
-    public RequestAnalysisDto(MultipartFile foodImage, DietType type, KoreanOrAll koreanOrAll,
+    public RequestAnalysisDto(MultipartFile foodImage, DietType dietType, KoreanOrAll koreanOrAll,
                               LocalDateTime intakeTime, String memberEmail){
         this.foodImage = foodImage;
-        this.type = type;
+        this.dietType = dietType;
         this.koreanOrAll = koreanOrAll;
         this.intakeTime = intakeTime;
-        this.memberEmail = memberEmail;
+        this.email = email;
     }
 
 }
