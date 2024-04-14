@@ -56,7 +56,7 @@ public class Member extends BaseEntity{
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    @OneToMany(mappedBy = "member")
+    @OneToMany(mappedBy = "member", fetch = FetchType.LAZY)
     @JsonManagedReference
     private List<Diet> diets = new ArrayList<>();
 

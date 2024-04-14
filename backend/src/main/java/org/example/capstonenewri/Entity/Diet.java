@@ -31,12 +31,12 @@ public class Diet extends BaseEntity{
     private String ingredients; // ai 서버의 결과를 받아올 것임.
     private Integer amount; // ai 서버의 결과를 받아올 것임.
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")
     @JsonBackReference
     private Member member;
 
-    @OneToOne(mappedBy = "diet")
+    @OneToOne(mappedBy = "diet", fetch = FetchType.LAZY)
     private DietDiary dietDiary;
 
 }

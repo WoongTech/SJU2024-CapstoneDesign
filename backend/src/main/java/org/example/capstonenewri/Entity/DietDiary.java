@@ -41,7 +41,7 @@ public class DietDiary {
     private BigDecimal saturated_fatty_acids_gram;
     private BigDecimal trans_fatty_acids_gram;
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "diet_id")
     private Diet diet;
 
