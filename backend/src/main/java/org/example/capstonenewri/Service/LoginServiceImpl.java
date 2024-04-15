@@ -23,7 +23,7 @@ public class LoginServiceImpl implements LoginService{
     @Value("${jwt.secret}")
     private String secretKey;
 
-    private Long expiredMs = Long.MAX_VALUE;
+    private Long expiredMs = 1000 * 60 * 60L;
     @Override
     public String login(RequestLoginDto requestLoginDto) {
         Optional<Member> member = memberRepository.findByEmail(requestLoginDto.getEmail());

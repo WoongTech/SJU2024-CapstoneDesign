@@ -26,3 +26,6 @@ jwt:
   header: Authorization
   secret: sejongUniversityCapstoneProjectTeamNameNewri
   token-validity-in-seconds: 86400
+
+flask:
+  url: https://drone-restapi-lwcnu.run.goorm.site

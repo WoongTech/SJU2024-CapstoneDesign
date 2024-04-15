@@ -28,9 +28,9 @@ public class AnalysisServiceImpl implements AnalysisServie{
     private final RestTemplate restTemplate;
 
 
-    @Value()  // ai 서버 주소
+    @Value("${flask.url}")  // ai 서버 주소
     private String url;
-    String endPoint = " "; // uri
+    String endPoint = "/test/test/test"; // uri
 
     @Override
     public void analyzeNutrition(RequestAnalysisDto requestAnalysisDto) {
@@ -41,6 +41,8 @@ public class AnalysisServiceImpl implements AnalysisServie{
         MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
         body.add("foodImage", requestAnalysisDto.getFoodImage().getResource());
         body.add("koreanOrAll", requestAnalysisDto.getKoreanOrAll());
+
+        System.out.println("ㅎ하ㅏ핳하하");
 
         HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(body, headers);
 
@@ -63,6 +65,10 @@ public class AnalysisServiceImpl implements AnalysisServie{
                     .amount(responseEntity.getBody().getAmount())
                     .member(member)
                     .build();
+
+            dietRepository.save(diet);
+
+
         } else {
             throw new RestClientException("AI 서버로부터의 응답이 올바르지 않습니다.");
         }

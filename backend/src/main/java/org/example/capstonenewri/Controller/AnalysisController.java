@@ -21,9 +21,10 @@ public class AnalysisController {
     private final MemberRepository memberRepository;
     private final AnalysisServiceImpl analysisServicImpl;
 
-    @PostMapping(value = "/save")
-    public void analzeNutrition(@RequestBody RequestAnalysisDto requestAnalysisDto, Authentication authentication){
+    @PostMapping(value = "/tmpsave")
+    public void analyzeNutrition(@RequestBody RequestAnalysisDto requestAnalysisDto, Authentication authentication){
         requestAnalysisDto.setEmail(authentication.getName());
+        System.out.println("hahahaah");
         analysisServicImpl.analyzeNutrition(requestAnalysisDto);
     }
 

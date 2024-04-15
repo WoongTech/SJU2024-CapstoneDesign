@@ -23,7 +23,7 @@ public class RequestAnalysisDto {
 
     @Builder
     public RequestAnalysisDto(MultipartFile foodImage, DietType dietType, KoreanOrAll koreanOrAll,
-                              LocalDateTime intakeTime, String memberEmail){
+                              LocalDateTime intakeTime, String email){
         this.foodImage = foodImage;
         this.dietType = dietType;
         this.koreanOrAll = koreanOrAll;
