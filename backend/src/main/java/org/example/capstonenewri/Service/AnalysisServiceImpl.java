@@ -1,5 +1,7 @@
 package org.example.capstonenewri.Service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.example.capstonenewri.Dto.RequestAnalysisDto;
@@ -9,6 +11,7 @@ import org.example.capstonenewri.Entity.Member;
 import org.example.capstonenewri.Repository.DietRepository;
 import org.example.capstonenewri.Repository.MemberRepository;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.FileSystemResource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.LinkedMultiValueMap;
@@ -37,6 +40,7 @@ public class AnalysisServiceImpl implements AnalysisServie{
 
     @Override
     public ResponseAnalysisDto analyzeNutrition(List<MultipartFile> foodImages, RequestAnalysisDto requestAnalysisDto) {
+        System.out.println("ㅎ하ㅏ핳하하");// 디버깅 문구
 
        HttpHeaders headers = new HttpHeaders();
        headers.setContentType(MediaType.MULTIPART_FORM_DATA); // 이미지 데이터 지정
@@ -44,15 +48,23 @@ public class AnalysisServiceImpl implements AnalysisServie{
         MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
         for (MultipartFile file : foodImages) {
             if (!file.isEmpty()) {
-                body.add("foodImages", file.getResource()); // 파일을 리소스로 직접 추가
+                body.add("foodImages", new FileSystemResource(file.getOriginalFilename())); // 여기서 FileSystemResource를 사용
             }
         }
-        body.add("koreanOrAll", requestAnalysisDto.getKoreanOrAll());
 
-        System.out.println("ㅎ하ㅏ핳하하");// 디버깅 문구
+        // requestAnalysisDto를 JSON 문자열로 변환
+        ObjectMapper objectMapper = new ObjectMapper();
+        String koreanOrAllJson;
+        try {
+            koreanOrAllJson = objectMapper.writeValueAsString(requestAnalysisDto.getKoreanOrAll());
+        } catch (JsonProcessingException e) {
+            throw new RestClientException("JSON 변환 실패", e);
+        }
+        // JSON 데이터를 'request' 키에 문자열로 추가
+        body.add("koreanOrAll", koreanOrAllJson);
 
         HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(body, headers);
-
+        System.out.println("ㅎ하ㅏ핳하하");// 디버깅 문구
         ResponseEntity<ResponseAIAnalysisDto> responseEntity = restTemplate.exchange(
                 url + endPoint,
                 HttpMethod.POST,
