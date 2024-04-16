@@ -2,6 +2,12 @@ server:
   port: 8080
 
 spring:
+
+  servlet:
+    multipart:
+      maxFileSize: 15MB
+      maxRequestSize: 150MB
+
   application:
     name: Capstone-Newri
   datasource:
@@ -12,9 +18,9 @@ spring:
 
   jpa:
     hibernate:
-      ddlAuto: create
+#      ddlAuto: create
 #      ddlAuto: create-drop
-#      ddlAuto: update
+      ddlAuto: update
       #ddlAuto: validate
     properties:
       hibernate:
