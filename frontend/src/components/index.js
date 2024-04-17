@@ -14,6 +14,8 @@ import HealthScore from './HealthScore';
 import Feedback from './Feedback';
 import MealTypeListItem from './MealTypeListItem.js';
 import FoodRadiobuttonContainer from './FoodRadiobuttonContainer';
+import TakePhoto from './TakePhoto';
+import InputButton from './InputButton';
 
 export {
   Button,
@@ -32,4 +34,6 @@ export {
   Feedback,
   MealTypeListItem,
   FoodRadiobuttonContainer,
+  TakePhoto,
+  InputButton,
 };

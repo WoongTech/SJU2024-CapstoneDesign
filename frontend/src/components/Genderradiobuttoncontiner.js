@@ -17,17 +17,17 @@ const Genderradiobuttoncontiner = ({ gender, setGender }) => {
     <Cardcontainer>
       <Customcardbutton
         gender={gender}
-        onPress={() => setGender('남자')}
+        onPress={() => setGender('M')}
         url={BoyImage}
         title="남자"
-        isFocused={gender === '남자'}
+        isFocused={gender === 'M'}
       ></Customcardbutton>
       <Customcardbutton
         gender={gender}
-        onPress={() => setGender('여자')}
+        onPress={() => setGender('F')}
         url={GirlImage}
         title="여자"
-        isFocused={gender === '여자'}
+        isFocused={gender === 'F'}
       ></Customcardbutton>
     </Cardcontainer>
   );

@@ -9,6 +9,7 @@ import Calander from './Calander';
 import Recipe from './Recipe';
 import Refrigerator from './Refrigerator';
 import RecordChooseFood from './RecordChooseFood';
+import UploadImage from './UploadImage';
 
 export {
   Signin,
@@ -22,4 +23,5 @@ export {
   Recipe,
   Refrigerator,
   RecordChooseFood,
+  UploadImage,
 };

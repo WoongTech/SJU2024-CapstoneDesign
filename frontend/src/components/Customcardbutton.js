@@ -9,6 +9,7 @@ const Container = styled.View`
   justify-content: center;
   align-items: center;
   margin: 10px 10px;
+  padding: 5px;
 `;
 const Image = styled.Image`
   width: 100px;
@@ -16,6 +17,8 @@ const Image = styled.Image`
 `;
 const Text = styled.Text`
   font-size: 22px;
+  font-weight: 600;
+  padding: 0px 2px 2px 5px;
   color: ${({ theme }) => theme.cardTitle};
 `;
 

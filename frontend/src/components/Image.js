@@ -4,6 +4,14 @@ import PropTypes from 'prop-types';
 import { theme } from '../theme';
 import { MaterialIcons } from '@expo/vector-icons';
 
+const Cardcontainer = styled.View`
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  background-color: ${({ theme }) => theme.background};
+  padding: 20px 10px;
+`;
+
 const ButtonContainer = styled.TouchableOpacity`
   background-color: ${({ theme }) => theme.imgBtnBackground};
   position: absolute;

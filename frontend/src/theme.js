@@ -14,6 +14,7 @@ const Colors = {
   blue: '#0043CE',
   red_0: '#F85B64',
   red_1: '#DA1E28',
+  purple: '#735BF2',
 };
 
 export const theme = {
@@ -61,4 +62,11 @@ export const theme = {
   //Feedback
   bubbleBackground: Colors.grey_2,
   bubbleText: Colors.grey_4,
+
+  //calender
+  breakfast: Colors.red_0,
+  lunch: Colors.blue,
+  dinner: Colors.darkgreen,
+  snack: Colors.purple,
+  selectedColor: Colors.main,
 };

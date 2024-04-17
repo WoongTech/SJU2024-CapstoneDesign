@@ -2,13 +2,10 @@ import React, { useState, useRef, useEffect } from 'react';
 import styled from 'styled-components/native';
 import {
   Button,
-  Input,
-  ErrorMessage,
   Customtext,
   Physicalcharacteristicsgroup,
 } from '../components';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import { removeWhitespace } from '../utils';
 
 const Container = styled.View`
   flex: 1;

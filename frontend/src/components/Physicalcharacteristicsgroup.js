@@ -87,12 +87,12 @@ const Physicalcharacteristicsgroup = () => {
       </Cardrowcontainer>
       <Cardrowcontainer>
         <Customcardbutton
-          onPress={() => toggleUserState('stone')}
+          onPress={() => toggleUserState('urinarystone')}
           url={Stone}
           title="요로결석"
-          isFocused={user.stone}
+          isFocused={user.urinarystone}
         ></Customcardbutton>
-        {user.gender == '여자' && (
+        {user.gender == 'F' && (
           <Customcardbutton
             onPress={() => toggleUserState('pregnant')}
             url={Pregnant}
@@ -100,7 +100,7 @@ const Physicalcharacteristicsgroup = () => {
             isFocused={user.pregnant}
           ></Customcardbutton>
         )}
-        {user.gender == '여자' && (
+        {user.gender == 'F' && (
           <Customcardbutton
             onPress={() => toggleUserState('breastfeeding')}
             url={Breastfeeding}

@@ -21,7 +21,7 @@ const Auth = () => {
         cardStyle: { backgroundColor: theme.background },
       }}
     >
-      {/* <Stack.Screen
+      <Stack.Screen
         name="Signin"
         component={Signin}
         options={{
@@ -100,7 +100,7 @@ const Auth = () => {
             ></MaterialIcons>
           ),
         }}
-      ></Stack.Screen> */}
+      ></Stack.Screen>
       <Stack.Screen
         name="Signupphysicalcharacteristics"
         component={Signupphysicalcharacteristics}

@@ -6,8 +6,10 @@ import { Platform } from 'react-native';
 const Container = styled.View`
   width: 90%;
   justify-content: center;
-  background-color: grey;
-  padding: ${Platform.OS == 'android' ? '10px 0px' : '10px 5px'};
+  border-bottom-width: 1px;
+  border-bottom-color: #bfbfbf;
+  padding: 10px 15px;
+  border-radius: 10px;
 `;
 
 const TitleContainer = styled.View`
@@ -21,20 +23,25 @@ const Title = styled.Text`
 `;
 const FoodType = styled.Text`
   margin-left: 20px;
-  font-size: ${Platform.OS == 'android' ? '14px' : '18px'};
+  font-size: ${Platform.OS == 'android' ? '15px' : '18px'};
   font-weight: 600;
-  padding: ${Platform.OS == 'android' ? '0px' : '5px'};
+  padding: ${Platform.OS == 'android' ? '3px' : '7px'};
 `;
 const CalorieContainer = styled.View`
   align-items: flex-end;
 `;
 const Calorie = styled.Text`
   padding-right: 20px;
-  font-size: ${Platform.OS == 'android' ? '14px' : '18px'};
+  font-size: ${Platform.OS == 'android' ? '15px' : '18px'};
   font-weight: 600;
 `;
 
-const MealTypeListItem = ({ title, foodtype, calorie, color }) => {
+const MealTypeListItem = ({
+  title,
+  foodtype = '기록이 없습니다 사진을 찍어 추가하세요',
+  calorie = '',
+  color,
+}) => {
   return (
     <Container>
       <TitleContainer>
@@ -43,7 +50,9 @@ const MealTypeListItem = ({ title, foodtype, calorie, color }) => {
       </TitleContainer>
       <FoodType>{foodtype}</FoodType>
       <CalorieContainer>
-        <Calorie>{calorie}Kcal</Calorie>
+        <Calorie>
+          {calorie} {calorie != 0 && 'Kcal'}
+        </Calorie>
       </CalorieContainer>
     </Container>
   );

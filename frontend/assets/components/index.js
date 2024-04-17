@@ -14,6 +14,9 @@ import Vegan from './vegan.png';
 import Healthplus from './healthplus.png';
 import Mascot from './Mascot.png';
 
+import KoreanFood from './KoreanFood.png';
+import WesternFood from './WesternFood.png';
+
 export {
   BoyImage,
   GirlImage,
@@ -28,4 +31,6 @@ export {
   Vegan,
   Healthplus,
   Mascot,
+  KoreanFood,
+  WesternFood,
 };

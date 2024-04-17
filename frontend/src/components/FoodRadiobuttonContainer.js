@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from 'styled-components/native';
 import PropTypes from 'prop-types';
-import { BoyImage, GirlImage } from '../../assets/components';
+import { KoreanFood, WesternFood } from '../../assets/components';
 import { Customcardbutton } from './index';
 
 const Cardcontainer = styled.View`
@@ -9,7 +9,7 @@ const Cardcontainer = styled.View`
   align-items: center;
   justify-content: center;
   background-color: ${({ theme }) => theme.background};
-  padding: 10px 10px;
+  margin-bottom: 10px;
 `;
 
 const FoodRadiobuttonContainer = ({ foodType, setFoodType }) => {
@@ -17,13 +17,13 @@ const FoodRadiobuttonContainer = ({ foodType, setFoodType }) => {
     <Cardcontainer>
       <Customcardbutton
         onPress={() => setFoodType('한식')}
-        url={BoyImage}
+        url={KoreanFood}
         title="한식"
         isFocused={foodType === '한식'}
       ></Customcardbutton>
       <Customcardbutton
         onPress={() => setFoodType('세계음식')}
-        url={GirlImage}
+        url={WesternFood}
         title="세계음식"
         isFocused={foodType === '세계음식'}
       ></Customcardbutton>

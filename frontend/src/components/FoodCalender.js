@@ -10,11 +10,9 @@ const Container = styled.View`
   align-items: center;
 `;
 
-const vacation = { key: 'vacation', color: 'red', selectedDotColor: 'blue' };
-const massage = { key: 'massage', color: 'blue', selectedDotColor: 'blue' };
-const workout = { key: 'workout', color: 'green' };
-
 const FoodCalender = () => {
+  const theme = useContext(ThemeContext);
+
   const [selectedDay, setSelectedDay] = useState(() => {
     const today = new Date();
     const year = today.getFullYear();
@@ -23,13 +21,24 @@ const FoodCalender = () => {
     return `${year}-${month}-${day}`;
   });
 
+  const breakfast = {
+    key: 'breakfast',
+    color: theme.breakfast,
+  };
+  const lunch = { key: 'lunch', color: theme.lunch };
+  const dinner = { key: 'dinner', color: theme.dinner };
+  const snack = { key: 'snack', color: theme.snack };
+
   const markedDates = {
-    '2024-04-16': { dots: [vacation, massage, workout] },
-    '2024-04-17': { dots: [massage, workout, vacation], disabled: true },
+    '2024-04-16': { dots: [breakfast, lunch, snack] },
+    '2024-04-17': { dots: [breakfast, lunch, dinner, snack], disabled: true },
     '2024-04-18': { marked: true, dotColor: 'red', activeOpacity: 0 },
     '2024-04-19': { disabled: true, disableTouchEvent: true },
 
-    [selectedDay]: { selected: true },
+    [selectedDay]: {
+      selected: true,
+      selectedColor: theme.selectedColor,
+    },
   };
 
   return (
