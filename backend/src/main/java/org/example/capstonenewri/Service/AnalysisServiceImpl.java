@@ -21,7 +21,9 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.http.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 @Service
@@ -42,26 +44,35 @@ public class AnalysisServiceImpl implements AnalysisServie{
     public ResponseAnalysisDto analyzeNutrition(List<MultipartFile> foodImages, RequestAnalysisDto requestAnalysisDto) {
         System.out.println("ㅎ하ㅏ핳하하");// 디버깅 문구
 
-       HttpHeaders headers = new HttpHeaders();
-       headers.setContentType(MediaType.MULTIPART_FORM_DATA); // 이미지 데이터 지정
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.MULTIPART_FORM_DATA); // 이미지 데이터 지정
 
         MultiValueMap<String, Object> body = new LinkedMultiValueMap<>();
         for (MultipartFile file : foodImages) {
             if (!file.isEmpty()) {
-                body.add("foodImages", new FileSystemResource(file.getOriginalFilename())); // 여기서 FileSystemResource를 사용
+                body.add("foodImages",file.getResource()); // 여기서 MultipartFile의 Resource를 사용
             }
         }
 
-        // requestAnalysisDto를 JSON 문자열로 변환
+        // requestAnalysisDto의 koreanOrAll 필드를 JSON 문자열로 변환
         ObjectMapper objectMapper = new ObjectMapper();
         String koreanOrAllJson;
         try {
-            koreanOrAllJson = objectMapper.writeValueAsString(requestAnalysisDto.getKoreanOrAll());
+            Map<String, Object> koreanOrAllMap = new HashMap<>();
+            koreanOrAllMap.put("koreanOrAll", requestAnalysisDto.getKoreanOrAll());
+            koreanOrAllJson = objectMapper.writeValueAsString(koreanOrAllMap); // 키-값 쌍
         } catch (JsonProcessingException e) {
             throw new RestClientException("JSON 변환 실패", e);
         }
-        // JSON 데이터를 'request' 키에 문자열로 추가
-        body.add("koreanOrAll", koreanOrAllJson);
+        // JSON 파트를 위한 헤더 생성
+        HttpHeaders jsonHeaders = new HttpHeaders();
+        jsonHeaders.setContentType(MediaType.APPLICATION_JSON);
+
+        // JSON 문자열을 HttpEntity에 감싸기
+        HttpEntity<String> jsonPart = new HttpEntity<>(koreanOrAllJson, jsonHeaders);
+
+        // 바디에 JSON 파트 추가
+        body.add("koreanOrAll", jsonPart);
 
         HttpEntity<MultiValueMap<String, Object>> requestEntity = new HttpEntity<>(body, headers);
         System.out.println("ㅎ하ㅏ핳하하");// 디버깅 문구
