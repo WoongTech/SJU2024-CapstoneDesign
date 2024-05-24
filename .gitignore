@@ -8,3 +8,6 @@ backend/.gradle/
 
 # testing file
 backend/src/test/
+
+# yml file
+backend/src/main/resources/application.yml
