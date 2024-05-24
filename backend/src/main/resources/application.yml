@@ -12,9 +12,6 @@ spring:
     name: Capstone-Newri
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5433/
-    username: postgres
-    password: postgres
 
   jpa:
     hibernate:
@@ -28,10 +25,5 @@ spring:
 #        show_sql: true
     database: postgresql
 
-jwt:
-  header: Authorization
-  secret: sejongUniversityCapstoneProjectTeamNameNewri
-  token-validity-in-seconds: 86400
-
-flask:
-  url: http://34.47.84.174:5000
+  profiles:
+    include: KEY
